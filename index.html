@@ -1,0 +1,1685 @@
+<html lang="id"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD Misi Pangkat Rahasia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Exo+2:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: #1a2b33;
+            color: #e0e0e0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23213745' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .title-font { font-family: 'Black Ops One', cursive; }
+        
+        .mission-card {
+            background-color: #213745;
+            border: 2px solid #4a6572;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .btn-military {
+            background-color: #5a8f29;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-military:hover {
+            background-color: #4a7d1a;
+            transform: translateY(-2px);
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #5a8f29;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .tank-progress {
+            height: 30px;
+            background-color: #2d3e50;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .tank-progress-bar {
+            height: 100%;
+            background-color: #5a8f29;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .tank-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: left 0.5s;
+            left: 0;
+        }
+        
+        .pattern-input {
+            width: 60px;
+            background-color: #2d3e50;
+            border: 1px solid #4a6572;
+            border-radius: 4px;
+            padding: 4px;
+            text-align: center;
+            color: white;
+        }
+        
+        .highlight-box {
+            background-color: rgba(255, 193, 7, 0.2);
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .example-box {
+            background-color: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4caf50;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .formula-box {
+            background-color: rgba(33, 150, 243, 0.2);
+            border-left: 4px solid #2196f3;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .quiz-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .quiz-container.active {
+            max-height: 5000px;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-16{height:4rem}.h-2\.5{height:0.625rem}.h-6{height:1.5rem}.w-12{width:3rem}.w-16{width:4rem}.w-6{width:1.5rem}.w-full{width:100%}.max-w-4xl{max-width:56rem}.border-collapse{border-collapse:collapse}.list-disc{list-style-type:disc}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-gray-600{--tw-border-opacity:1;border-color:rgb(75 85 99 / var(--tw-border-opacity, 1))}.border-white{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.bg-gray-600{--tw-bg-opacity:1;background-color:rgb(75 85 99 / var(--tw-bg-opacity, 1))}.bg-gray-700{--tw-bg-opacity:1;background-color:rgb(55 65 81 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-red-600{--tw-bg-opacity:1;background-color:rgb(220 38 38 / var(--tw-bg-opacity, 1))}.bg-yellow-600{--tw-bg-opacity:1;background-color:rgb(202 138 4 / var(--tw-bg-opacity, 1))}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pl-5{padding-left:1.25rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:p-8{padding:2rem}.md\:text-5xl{font-size:3rem;line-height:1}}</style><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-msup {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+  box-sizing: border-box;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.075em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mfrac {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-frac {
+  display: inline-block;
+  vertical-align: 0.17em;
+  padding: 0 .22em;
+}
+
+mjx-frac[type="d"] {
+  vertical-align: .04em;
+}
+
+mjx-frac[delims] {
+  padding: 0 .1em;
+}
+
+mjx-frac[atop] {
+  padding: 0 .12em;
+}
+
+mjx-frac[atop][delims] {
+  padding: 0;
+}
+
+mjx-dtable {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-dtable > * {
+  font-size: 2000%;
+}
+
+mjx-dbox {
+  display: block;
+  font-size: 5%;
+}
+
+mjx-num {
+  display: block;
+  text-align: center;
+}
+
+mjx-den {
+  display: block;
+  text-align: center;
+}
+
+mjx-mfrac[bevelled] > mjx-num {
+  display: inline-block;
+}
+
+mjx-mfrac[bevelled] > mjx-den {
+  display: inline-block;
+}
+
+mjx-den[align="right"], mjx-num[align="right"] {
+  text-align: right;
+}
+
+mjx-den[align="left"], mjx-num[align="left"] {
+  text-align: left;
+}
+
+mjx-nstrut {
+  display: inline-block;
+  height: .054em;
+  width: 0;
+  vertical-align: -.054em;
+}
+
+mjx-nstrut[type="d"] {
+  height: .217em;
+  vertical-align: -.217em;
+}
+
+mjx-dstrut {
+  display: inline-block;
+  height: .505em;
+  width: 0;
+}
+
+mjx-dstrut[type="d"] {
+  height: .726em;
+}
+
+mjx-line {
+  display: block;
+  box-sizing: border-box;
+  min-height: 1px;
+  height: .06em;
+  border-top: .06em solid;
+  margin: .06em -.1em;
+  overflow: hidden;
+}
+
+mjx-line[type="d"] {
+  margin: .18em -.1em;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c30::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "0";
+}
+
+mjx-c.mjx-c33::before {
+  padding: 0.665em 0.5em 0.022em 0;
+  content: "3";
+}
+
+mjx-c.mjx-c34::before {
+  padding: 0.677em 0.5em 0 0;
+  content: "4";
+}
+
+mjx-c.mjx-c32::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "2";
+}
+
+mjx-c.mjx-c1D44E.TEX-I::before {
+  padding: 0.441em 0.529em 0.01em 0;
+  content: "a";
+}
+
+mjx-c.mjx-c1D45B.TEX-I::before {
+  padding: 0.442em 0.6em 0.011em 0;
+  content: "n";
+}
+
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-cD7::before {
+  padding: 0.491em 0.778em 0 0;
+  content: "\D7";
+}
+
+mjx-c.mjx-c2E::before {
+  padding: 0.12em 0.278em 0 0;
+  content: ".";
+}
+
+mjx-c.mjx-c35::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "5";
+}
+
+mjx-c.mjx-c2260::before {
+  padding: 0.716em 0.778em 0.215em 0;
+  content: "\2260";
+}
+
+mjx-c.mjx-c2212::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "\2212";
+}
+
+mjx-c.mjx-c38::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "8";
+}
+
+mjx-c.mjx-c1D45A.TEX-I::before {
+  padding: 0.442em 0.878em 0.011em 0;
+  content: "m";
+}
+
+mjx-c.mjx-c2B::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "+";
+}
+
+mjx-c.mjx-c37::before {
+  padding: 0.676em 0.5em 0.022em 0;
+  content: "7";
+}
+
+mjx-c.mjx-cF7::before {
+  padding: 0.537em 0.778em 0.036em 0;
+  content: "\F7";
+}
+
+mjx-c.mjx-c28::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c29::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: ")";
+}
+
+mjx-c.mjx-c36::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "6";
+}
+</style></head>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="title-font text-4xl md:text-5xl text-yellow-400 mb-2">MISI PANGKAT RAHASIA</h1>
+            <p class="text-xl text-green-400">LKPD Matematika Kelas 8 - Bilangan Berpangkat</p>
+            <div class="flex justify-center mt-4">
+                <svg class="w-16 h-16 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                    <path d="M256 0c-17.7 0-32 14.3-32 32V64H160c-17.7 0-32 14.3-32 32v32h-8c-13.3 0-24 10.7-24 24s10.7 24 24 24h8v32h-8c-13.3 0-24 10.7-24 24s10.7 24 24 24h8v32h-8c-13.3 0-24 10.7-24 24s10.7 24 24 24h8v32h-8c-13.3 0-24 10.7-24 24s10.7 24 24 24h8v32c0 17.7 14.3 32 32 32h64v32c0 17.7 14.3 32 32 32s32-14.3 32-32V448h64c17.7 0 32-14.3 32-32v-32h8c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8v-32h8c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8v-32h8c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8v-32h8c13.3 0 24-10.7 24-24s-10.7-24-24-24h-8V96c0-17.7-14.3-32-32-32H288V32c0-17.7-14.3-32-32-32zm0 128c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32zm-32 160c0 17.7 14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32s-32 14.3-32 32z"></path>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Identitas -->
+        <div class="mission-card p-4 mb-8">
+            <h2 class="title-font text-2xl text-yellow-400 mb-4">IDENTITAS AGEN</h2>
+            <div class="mb-4">
+                <label class="block text-gray-300 mb-1">Nama Agen:</label>
+                <input type="text" id="nama" class="w-full bg-gray-800 border border-gray-600 rounded p-2 text-white">
+            </div>
+            <button id="startMission" class="btn-military mt-2 w-full" disabled="">MISI DIMULAI!</button>
+        </div>
+
+        <!-- Konten Misi -->
+        <div id="missionContent" class="">
+            <!-- Pengenalan Bilangan Berpangkat -->
+            <div class="mission-card p-4 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="title-font text-2xl text-yellow-400">PENGENALAN BILANGAN BERPANGKAT</h2>
+                    <div class="bg-yellow-600 text-black font-bold px-3 py-1 rounded-full">INTEL</div>
+                </div>
+                
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <p class="mb-4">Dalam dunia persenjataan militer, kekuatan senjata sering dinyatakan dalam bentuk angka. Semakin besar angkanya, semakin dahsyat kekuatannya!</p>
+                    
+                    <div class="highlight-box">
+                        <h3 class="font-bold text-yellow-400 mb-2">Apa itu Bilangan Berpangkat?</h3>
+                        <p>Bilangan berpangkat adalah cara singkat untuk menuliskan perkalian berulang dari suatu bilangan yang sama.</p>
+                    </div>
+                    
+                    <div class="example-box mt-4">
+                        <h3 class="font-bold text-green-400 mb-2">Contoh dalam Kehidupan Nyata:</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><span class="mr-2">💣</span> <strong>Bom:</strong> Kekuatan ledakan bom atom diukur dalam pangkat 10. Bom Hiroshima memiliki kekuatan setara dengan <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>10</mn><mrow data-mjx-texclass="ORD"><mn>13</mn></mrow></msup></math></mjx-assistive-mml></mjx-container> joule energi.</li>
+                            <li><span class="mr-2">🚀</span> <strong>Roket:</strong> Kecepatan roket dapat mencapai <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="1" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>10</mn><mn>4</mn></msup></math></mjx-assistive-mml></mjx-container> meter per detik.</li>
+                            <li><span class="mr-2">🔫</span> <strong>Pistol:</strong> Peluru pistol memiliki energi kinetik sekitar <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="2" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>10</mn><mn>2</mn></msup></math></mjx-assistive-mml></mjx-container> joule.</li>
+                            <li><span class="mr-2">🛡️</span> <strong>Tank:</strong> Berat tank sekitar <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="3" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>10</mn><mn>4</mn></msup></math></mjx-assistive-mml></mjx-container> kilogram.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="formula-box mt-4">
+                        <h3 class="font-bold text-blue-400 mb-2">Bentuk Umum:</h3>
+                        <p class="text-center text-xl"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="4" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>a</mi><mi>n</mi></msup><mo>=</mo><mi>a</mi><mo>×</mo><mi>a</mi><mo>×</mo><mi>a</mi><mo>×</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo>×</mo><mi>a</mi></math></mjx-assistive-mml></mjx-container></p>
+                        <p class="text-center">(sebanyak n faktor)</p>
+                        <p class="mt-2">Dimana:</p>
+                        <ul class="list-disc pl-5">
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="5" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi></math></mjx-assistive-mml></mjx-container> = bilangan pokok (basis)</li>
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="6" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></mjx-assistive-mml></mjx-container> = pangkat (eksponen)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Misi 1: Pola Bilangan Berpangkat -->
+            <div class="mission-card p-4 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="title-font text-2xl text-yellow-400">POLA BILANGAN BERPANGKAT</h2>
+                    <div class="bg-yellow-600 text-black font-bold px-3 py-1 rounded-full">MISI #1</div>
+                </div>
+                
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <p class="mb-4">Mari kita lihat pola bilangan berpangkat dengan basis 2 dari pangkat 1 sampai 5:</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse mb-4">
+                            <thead>
+                                <tr class="bg-gray-700">
+                                    <th class="border border-gray-600 p-2">Notasi</th>
+                                    <th class="border border-gray-600 p-2">Perkalian Berulang</th>
+                                    <th class="border border-gray-600 p-2">Hasil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-gray-600 p-2 text-center"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="7" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>1</mn></msup></math></mjx-assistive-mml></mjx-container></td>
+                                    <td class="border border-gray-600 p-2">2</td>
+                                    <td class="border border-gray-600 p-2 text-center">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-600 p-2 text-center"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="8" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>2</mn></msup></math></mjx-assistive-mml></mjx-container></td>
+                                    <td class="border border-gray-600 p-2">2 × 2</td>
+                                    <td class="border border-gray-600 p-2 text-center">4</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-600 p-2 text-center"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="9" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>3</mn></msup></math></mjx-assistive-mml></mjx-container></td>
+                                    <td class="border border-gray-600 p-2">2 × 2 × 2</td>
+                                    <td class="border border-gray-600 p-2 text-center">8</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-600 p-2 text-center"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="10" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>4</mn></msup></math></mjx-assistive-mml></mjx-container></td>
+                                    <td class="border border-gray-600 p-2">2 × 2 × 2 × 2</td>
+                                    <td class="border border-gray-600 p-2 text-center">16</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-gray-600 p-2 text-center"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="11" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>5</mn></msup></math></mjx-assistive-mml></mjx-container></td>
+                                    <td class="border border-gray-600 p-2">2 × 2 × 2 × 2 × 2</td>
+                                    <td class="border border-gray-600 p-2 text-center">32</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-4 rounded-lg mt-4">
+                    <h3 class="font-bold text-green-400 mb-4">LATIHAN: IDENTIFIKASI BASIS DAN PANGKAT</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="text-center mb-3">Tentukan basis dan pangkat dari:</p>
+                            <div id="basis-pangkat-question" class="text-center text-2xl mb-3">3⁴</div>
+                            <div class="flex justify-center gap-4">
+                                <div>
+                                    <label class="block text-sm mb-1">Basis:</label>
+                                    <input type="number" id="basis-answer" class="pattern-input">
+                                </div>
+                                <div>
+                                    <label class="block text-sm mb-1">Pangkat:</label>
+                                    <input type="number" id="pangkat-answer" class="pattern-input">
+                                </div>
+                            </div>
+                            <button id="check-basis-pangkat" class="btn-military w-full mt-3">Periksa</button>
+                            <div id="basis-pangkat-feedback" class="mt-2 text-center hidden"></div>
+                        </div>
+                        
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="text-center mb-3">Tuliskan perkalian berulang dari:</p>
+                            <div id="perkalian-question" class="text-center text-2xl mb-3">5³</div>
+                            <input type="text" id="perkalian-answer" class="w-full bg-gray-800 border border-gray-600 rounded p-2 text-white" placeholder="Contoh: 2×2×2">
+                            <button id="check-perkalian" class="btn-military w-full mt-3">Periksa</button>
+                            <div id="perkalian-feedback" class="mt-2 text-center hidden"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tank-progress mt-4 mb-2">
+                    <div class="tank-progress-bar" id="mission1-progress"></div>
+                    <div class="tank-icon" id="mission1-tank">🛡️</div>
+                </div>
+                
+                <div class="success-message" id="mission1-success">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-white mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path>
+                        </svg>
+                        <span>Misi 1 Berhasil! Kamu telah menguasai konsep dasar bilangan berpangkat. +25 XP</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Misi 2: Pangkat Nol dan Pangkat Negatif -->
+            <div class="mission-card p-4 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="title-font text-2xl text-yellow-400">PANGKAT NOL DAN PANGKAT NEGATIF</h2>
+                    <div class="bg-yellow-600 text-black font-bold px-3 py-1 rounded-full">MISI #2</div>
+                </div>
+                
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <h3 class="font-bold text-green-400 mb-3">PANGKAT NOL</h3>
+                    
+                    <div class="formula-box mb-4">
+                        <p class="font-bold">Definisi Pangkat Nol:</p>
+                        <p class="text-center text-xl"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="12" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>a</mi><mn>0</mn></msup><mo>=</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container></p>
+                        <p class="text-center">(untuk <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="13" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2260"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi><mo>≠</mo><mn>0</mn></math></mjx-assistive-mml></mjx-container>)</p>
+                    </div>
+                    
+                    <div class="example-box mb-4">
+                        <p class="font-bold">Contoh:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="14" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>0</mn></msup><mo>=</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container></li>
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="15" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>5</mn><mn>0</mn></msup><mo>=</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container></li>
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="16" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>10</mn><mn>0</mn></msup><mo>=</mo><mn>1</mn></math></mjx-assistive-mml></mjx-container></li>
+                        </ul>
+                    </div>
+                    
+                    <h3 class="font-bold text-green-400 mb-3 mt-6">PANGKAT NEGATIF</h3>
+                    
+                    <div class="formula-box mb-4">
+                        <p class="font-bold">Definisi Pangkat Negatif:</p>
+                        <p class="text-center text-xl"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="17" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-msup size="s"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.289em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>a</mi><mrow data-mjx-texclass="ORD"><mo>−</mo><mi>n</mi></mrow></msup><mo>=</mo><mfrac><mn>1</mn><msup><mi>a</mi><mi>n</mi></msup></mfrac></math></mjx-assistive-mml></mjx-container></p>
+                        <p class="text-center">(untuk <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="18" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2260"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi><mo>≠</mo><mn>0</mn></math></mjx-assistive-mml></mjx-container>)</p>
+                    </div>
+                    
+                    <div class="example-box mb-4">
+                        <p class="font-bold">Contoh:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="19" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-msup size="s"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.289em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c38"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mo>−</mo><mn>3</mn></mrow></msup><mo>=</mo><mfrac><mn>1</mn><msup><mn>2</mn><mn>3</mn></msup></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>8</mn></mfrac></math></mjx-assistive-mml></mjx-container></li>
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="20" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>5</mn><mrow data-mjx-texclass="ORD"><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mfrac><mn>1</mn><mn>5</mn></mfrac></math></mjx-assistive-mml></mjx-container></li>
+                            <li><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="21" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-texatom size="s" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-msup size="s"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.393em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>10</mn><mrow data-mjx-texclass="ORD"><mo>−</mo><mn>2</mn></mrow></msup><mo>=</mo><mfrac><mn>1</mn><msup><mn>10</mn><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>100</mn></mfrac></math></mjx-assistive-mml></mjx-container></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 p-4 rounded-lg mt-4">
+                    <h3 class="font-bold text-green-400 mb-4">LATIHAN: PANGKAT NOL DAN NEGATIF</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="text-center mb-3">Hitung nilai dari:</p>
+                            <div id="zero-power-question" class="text-center text-2xl mb-3">7⁰</div>
+                            <input type="number" id="zero-power-answer" class="w-full bg-gray-800 border border-gray-600 rounded p-2 text-white" placeholder="Masukkan jawaban">
+                            <button id="check-zero-power" class="btn-military w-full mt-3">Periksa</button>
+                            <div id="zero-power-feedback" class="mt-2 text-center hidden"></div>
+                        </div>
+                        
+                        <div class="bg-gray-700 p-3 rounded-lg">
+                            <p class="text-center mb-3">Hitung nilai dari:</p>
+                            <div id="negative-power-question" class="text-center text-2xl mb-3">3⁻²</div>
+                            <div class="flex justify-center items-center mt-3">
+                                <div class="text-center">
+                                    <input type="number" id="negative-power-num" class="pattern-input w-12 mb-1" placeholder="?">
+                                    <div class="border-b border-white w-12"></div>
+                                    <input type="number" id="negative-power-denom" class="pattern-input w-12 mt-1" placeholder="?">
+                                </div>
+                            </div>
+                            <button id="check-negative-power" class="btn-military w-full mt-3">Periksa</button>
+                            <div id="negative-power-feedback" class="mt-2 text-center hidden"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tank-progress mt-4 mb-2">
+                    <div class="tank-progress-bar" id="mission2-progress"></div>
+                    <div class="tank-icon" id="mission2-tank">🛡️</div>
+                </div>
+                
+                <div class="success-message" id="mission2-success">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-white mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path>
+                        </svg>
+                        <span>Misi 2 Berhasil! Kamu telah menguasai pangkat nol dan pangkat negatif. +35 XP</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Misi 3: Sifat-sifat Bilangan Berpangkat -->
+            <div class="mission-card p-4 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="title-font text-2xl text-yellow-400">SIFAT-SIFAT BILANGAN BERPANGKAT</h2>
+                    <div class="bg-yellow-600 text-black font-bold px-3 py-1 rounded-full">MISI #3</div>
+                </div>
+                
+                <!-- Sifat 1: Perkalian Pangkat dengan Basis Sama -->
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <div class="formula-box mb-4">
+                        <h3 class="font-bold text-blue-400 mb-2">Sifat 1: Perkalian Pangkat dengan Basis Sama</h3>
+                        <p class="text-center text-xl"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="22" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-msup space="3"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>a</mi><mi>m</mi></msup><mo>×</mo><msup><mi>a</mi><mi>n</mi></msup><mo>=</mo><msup><mi>a</mi><mrow data-mjx-texclass="ORD"><mi>m</mi><mo>+</mo><mi>n</mi></mrow></msup></math></mjx-assistive-mml></mjx-container></p>
+                        <p class="mt-2">Jika kita mengalikan dua bilangan berpangkat dengan basis yang sama, kita dapat menjumlahkan pangkatnya.</p>
+                    </div>
+                    
+                    <div class="example-box mt-4">
+                        <h4 class="font-bold mb-2">Contoh:</h4>
+                        <p><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="23" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-msup space="3"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c37"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c38"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>3</mn></msup><mo>×</mo><msup><mn>2</mn><mn>4</mn></msup><mo>=</mo><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mn>3</mn><mo>+</mo><mn>4</mn></mrow></msup><mo>=</mo><msup><mn>2</mn><mn>7</mn></msup><mo>=</mo><mn>128</mn></math></mjx-assistive-mml></mjx-container></p>
+                    </div>
+                    
+                    <div class="bg-gray-700 p-3 rounded-lg mt-4">
+                        <h4 class="font-bold text-center mb-3">Latihan Sifat 1</h4>
+                        <p class="text-center mb-2">Hitunglah:</p>
+                        <p class="text-center text-xl mb-3">2³ × 2⁴ = 2<sup>?</sup> = ?</p>
+                        <div class="flex justify-center gap-3 items-center">
+                            <div>
+                                <label class="block text-sm mb-1">Pangkat:</label>
+                                <input type="number" id="prop1-exp-1" class="pattern-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Hasil:</label>
+                                <input type="number" id="prop1-result-1" class="pattern-input">
+                            </div>
+                        </div>
+                        <button id="check-prop1-1" class="btn-military w-full mt-3">Periksa</button>
+                        <div id="prop1-feedback-1" class="mt-2 text-center text-green-400">Benar! 2³ × 2⁴ = 2³⁺⁴ = 2⁷ = 128</div>
+                    </div>
+                </div>
+                
+                <!-- Sifat 2: Pembagian Pangkat dengan Basis Sama -->
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <div class="formula-box mb-4">
+                        <h3 class="font-bold text-blue-400 mb-2">Sifat 2: Pembagian Pangkat dengan Basis Sama</h3>
+                        <p class="text-center text-xl"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="24" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cF7"></mjx-c></mjx-mo><mjx-msup space="3"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>a</mi><mi>m</mi></msup><mo>÷</mo><msup><mi>a</mi><mi>n</mi></msup><mo>=</mo><msup><mi>a</mi><mrow data-mjx-texclass="ORD"><mi>m</mi><mo>−</mo><mi>n</mi></mrow></msup></math></mjx-assistive-mml></mjx-container></p>
+                        <p class="mt-2">Jika kita membagi dua bilangan berpangkat dengan basis yang sama, kita dapat mengurangkan pangkatnya.</p>
+                    </div>
+                    
+                    <div class="example-box mt-4">
+                        <h4 class="font-bold mb-2">Contoh:</h4>
+                        <p><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="25" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cF7"></mjx-c></mjx-mo><mjx-msup space="3"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c38"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mn>2</mn><mn>5</mn></msup><mo>÷</mo><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mn>5</mn><mo>−</mo><mn>2</mn></mrow></msup><mo>=</mo><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>8</mn></math></mjx-assistive-mml></mjx-container></p>
+                    </div>
+                    
+                    <div class="bg-gray-700 p-3 rounded-lg mt-4">
+                        <h4 class="font-bold text-center mb-3">Latihan Sifat 2</h4>
+                        <p class="text-center mb-2">Hitunglah:</p>
+                        <p class="text-center text-xl mb-3">3⁶ ÷ 3² = 3<sup>?</sup> = ?</p>
+                        <div class="flex justify-center gap-3 items-center">
+                            <div>
+                                <label class="block text-sm mb-1">Pangkat:</label>
+                                <input type="number" id="prop2-exp-1" class="pattern-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Hasil:</label>
+                                <input type="number" id="prop2-result-1" class="pattern-input">
+                            </div>
+                        </div>
+                        <button id="check-prop2-1" class="btn-military w-full mt-3">Periksa</button>
+                        <div id="prop2-feedback-1" class="mt-2 text-center hidden"></div>
+                    </div>
+                </div>
+                
+                <!-- Sifat 3: Pangkat dari Pangkat -->
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <div class="formula-box mb-4">
+                        <h3 class="font-bold text-blue-400 mb-2">Sifat 3: Pangkat dari Pangkat</h3>
+                        <p class="text-center text-xl"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="26" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup><mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-script style="vertical-align: 0.363em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45A TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><msup><mi>a</mi><mi>m</mi></msup><msup><mo stretchy="false">)</mo><mi>n</mi></msup><mo>=</mo><msup><mi>a</mi><mrow data-mjx-texclass="ORD"><mi>m</mi><mo>×</mo><mi>n</mi></mrow></msup></math></mjx-assistive-mml></mjx-container></p>
+                        <p class="mt-2">Jika kita memangkatkan suatu bilangan berpangkat, kita dapat mengalikan pangkatnya.</p>
+                    </div>
+                    
+                    <div class="example-box mt-4">
+                        <h4 class="font-bold mb-2">Contoh:</h4>
+                        <p><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="27" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msup space="4"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-script style="vertical-align: 0.363em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c36"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c36"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><msup><mn>2</mn><mn>3</mn></msup><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>=</mo><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mn>3</mn><mo>×</mo><mn>2</mn></mrow></msup><mo>=</mo><msup><mn>2</mn><mn>6</mn></msup><mo>=</mo><mn>64</mn></math></mjx-assistive-mml></mjx-container></p>
+                    </div>
+                </div>
+                
+                <div class="tank-progress mt-4 mb-2">
+                    <div class="tank-progress-bar" id="mission3-progress" style="width: 50%;"></div>
+                    <div class="tank-icon" id="mission3-tank" style="left: 45%;">🛡️</div>
+                </div>
+                
+                <div class="success-message" id="mission3-success">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-white mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"></path>
+                        </svg>
+                        <span>Misi 3 Berhasil! Kamu telah menguasai sifat-sifat bilangan berpangkat. +40 XP</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Evaluasi Akhir -->
+            <div class="mission-card p-4 mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="title-font text-2xl text-yellow-400">EVALUASI AKHIR: UJI KEMAMPUAN</h2>
+                    <div class="bg-red-600 text-white font-bold px-3 py-1 rounded-full">100 XP</div>
+                </div>
+                
+                <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                    <p class="mb-4">Selamat! Kamu telah menyelesaikan semua misi pelatihan. Sekarang saatnya menguji kemampuanmu dengan ujian akhir.</p>
+                    
+                    <button id="start-quiz" class="btn-military w-full py-3 text-lg">MULAI UJIAN AKHIR</button>
+                    
+                    <div id="quiz-container" class="quiz-container mt-4">
+                        <div id="quiz-progress" class="mb-4">
+                            <div class="flex justify-between mb-2">
+                                <span>Soal: <span id="current-question">1</span>/5</span>
+                                <span>Skor: <span id="score">0</span></span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                <div id="quiz-progress-bar" class="bg-green-600 h-2.5 rounded-full" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="question-container" class="bg-gray-700 p-4 rounded-lg mb-4">
+                            <p id="question-text" class="text-lg mb-4">Soal akan muncul di sini</p>
+                            <div id="options-container" class="space-y-2">
+                                <!-- Options will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div id="quiz-feedback" class="hidden p-3 rounded-lg mb-4"></div>
+                        
+                        <div class="flex justify-between">
+                            <button id="prev-question" class="btn-military bg-gray-600" disabled="">Sebelumnya</button>
+                            <button id="next-question" class="btn-military">Selanjutnya</button>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-results" class="hidden mt-4">
+                        <div class="bg-gray-700 p-4 rounded-lg text-center">
+                            <h3 class="text-xl font-bold mb-2">Hasil Ujian Akhir</h3>
+                            <p class="text-2xl mb-4">Skor: <span id="final-score">0</span>/100</p>
+                            <div id="rank-container" class="mb-4">
+                                <p class="text-lg">Pangkat Baru:</p>
+                                <p id="rank" class="text-xl font-bold text-yellow-400">-</p>
+                            </div>
+                            
+                            <button id="retry-quiz" class="btn-military">Coba Lagi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let totalXP = 0;
+            let mission1Complete = false;
+            let mission2Complete = false;
+            let mission3Complete = false;
+            
+            // Start Mission
+            document.getElementById('startMission').addEventListener('click', function() {
+                const nama = document.getElementById('nama').value;
+                
+                if (!nama) {
+                    alert('Harap isi Nama Agen terlebih dahulu!');
+                    return;
+                }
+                
+                document.getElementById('missionContent').classList.remove('hidden');
+                this.textContent = 'MISI DIMULAI!';
+                this.disabled = true;
+            });
+            
+            // Mission 1: Basis dan Pangkat
+            const basisPangkatQuestions = [
+                { question: '3⁴', basis: 3, pangkat: 4 },
+                { question: '5²', basis: 5, pangkat: 2 }
+            ];
+            
+            let currentBasisPangkatQ = 0;
+            let basisPangkatCorrect = 0;
+            
+            document.getElementById('basis-pangkat-question').textContent = basisPangkatQuestions[currentBasisPangkatQ].question;
+            
+            document.getElementById('check-basis-pangkat').addEventListener('click', function() {
+                const userBasis = parseInt(document.getElementById('basis-answer').value);
+                const userPangkat = parseInt(document.getElementById('pangkat-answer').value);
+                const correctBasis = basisPangkatQuestions[currentBasisPangkatQ].basis;
+                const correctPangkat = basisPangkatQuestions[currentBasisPangkatQ].pangkat;
+                const feedback = document.getElementById('basis-pangkat-feedback');
+                
+                if (userBasis === correctBasis && userPangkat === correctPangkat) {
+                    feedback.textContent = 'Benar! 💥';
+                    feedback.className = 'mt-2 text-center text-green-400';
+                    basisPangkatCorrect++;
+                    
+                    currentBasisPangkatQ++;
+                    if (currentBasisPangkatQ < basisPangkatQuestions.length) {
+                        setTimeout(() => {
+                            document.getElementById('basis-pangkat-question').textContent = basisPangkatQuestions[currentBasisPangkatQ].question;
+                            document.getElementById('basis-answer').value = '';
+                            document.getElementById('pangkat-answer').value = '';
+                            feedback.className = 'mt-2 text-center hidden';
+                        }, 1000);
+                    } else {
+                        feedback.textContent = 'Semua soal selesai! 🎖️';
+                    }
+                } else {
+                    feedback.textContent = 'Coba lagi! 🎯';
+                    feedback.className = 'mt-2 text-center text-red-400';
+                }
+                
+                feedback.classList.remove('hidden');
+                updateMission1Progress();
+            });
+            
+            // Perkalian Berulang
+            const perkalianQuestions = [
+                { question: '5³', answer: '5×5×5' },
+                { question: '2⁴', answer: '2×2×2×2' }
+            ];
+            
+            let currentPerkalianQ = 0;
+            let perkalianCorrect = 0;
+            
+            document.getElementById('perkalian-question').textContent = perkalianQuestions[currentPerkalianQ].question;
+            
+            document.getElementById('check-perkalian').addEventListener('click', function() {
+                const userAnswer = document.getElementById('perkalian-answer').value.replace(/\s+/g, '');
+                const correctAnswer = perkalianQuestions[currentPerkalianQ].answer;
+                const feedback = document.getElementById('perkalian-feedback');
+                
+                if (userAnswer === correctAnswer) {
+                    feedback.textContent = 'Benar! 💥';
+                    feedback.className = 'mt-2 text-center text-green-400';
+                    perkalianCorrect++;
+                    
+                    currentPerkalianQ++;
+                    if (currentPerkalianQ < perkalianQuestions.length) {
+                        setTimeout(() => {
+                            document.getElementById('perkalian-question').textContent = perkalianQuestions[currentPerkalianQ].question;
+                            document.getElementById('perkalian-answer').value = '';
+                            feedback.className = 'mt-2 text-center hidden';
+                        }, 1000);
+                    } else {
+                        feedback.textContent = 'Semua soal selesai! 🎖️';
+                    }
+                } else {
+                    feedback.textContent = 'Coba lagi! 🎯';
+                    feedback.className = 'mt-2 text-center text-red-400';
+                }
+                
+                feedback.classList.remove('hidden');
+                updateMission1Progress();
+            });
+            
+            function updateMission1Progress() {
+                const totalExercises = basisPangkatQuestions.length + perkalianQuestions.length;
+                const completedExercises = basisPangkatCorrect + perkalianCorrect;
+                const progress = (completedExercises / totalExercises) * 100;
+                
+                document.getElementById('mission1-progress').style.width = `${progress}%`;
+                document.getElementById('mission1-tank').style.left = `${progress - 5}%`;
+                
+                if (completedExercises === totalExercises) {
+                    document.getElementById('mission1-success').style.display = 'block';
+                    totalXP += 25;
+                    mission1Complete = true;
+                }
+            }
+            
+            // Mission 2: Pangkat Nol dan Negatif
+            const zeroPowerQuestions = [
+                { question: '7⁰', answer: 1 },
+                { question: '123⁰', answer: 1 }
+            ];
+            
+            let currentZeroPowerQ = 0;
+            let zeroPowerCorrect = 0;
+            
+            document.getElementById('zero-power-question').textContent = zeroPowerQuestions[currentZeroPowerQ].question;
+            
+            document.getElementById('check-zero-power').addEventListener('click', function() {
+                const userAnswer = parseInt(document.getElementById('zero-power-answer').value);
+                const correctAnswer = zeroPowerQuestions[currentZeroPowerQ].answer;
+                const feedback = document.getElementById('zero-power-feedback');
+                
+                if (userAnswer === correctAnswer) {
+                    feedback.textContent = 'Benar! 💥';
+                    feedback.className = 'mt-2 text-center text-green-400';
+                    zeroPowerCorrect++;
+                    
+                    currentZeroPowerQ++;
+                    if (currentZeroPowerQ < zeroPowerQuestions.length) {
+                        setTimeout(() => {
+                            document.getElementById('zero-power-question').textContent = zeroPowerQuestions[currentZeroPowerQ].question;
+                            document.getElementById('zero-power-answer').value = '';
+                            feedback.className = 'mt-2 text-center hidden';
+                        }, 1000);
+                    } else {
+                        feedback.textContent = 'Semua soal selesai! 🎖️';
+                    }
+                } else {
+                    feedback.textContent = 'Coba lagi! 🎯';
+                    feedback.className = 'mt-2 text-center text-red-400';
+                }
+                
+                feedback.classList.remove('hidden');
+                updateMission2Progress();
+            });
+            
+            // Negative Power
+            const negativePowerQuestions = [
+                { question: '3⁻²', num: 1, denom: 9 },
+                { question: '2⁻³', num: 1, denom: 8 }
+            ];
+            
+            let currentNegativePowerQ = 0;
+            let negativePowerCorrect = 0;
+            
+            document.getElementById('negative-power-question').textContent = negativePowerQuestions[currentNegativePowerQ].question;
+            
+            document.getElementById('check-negative-power').addEventListener('click', function() {
+                const userNum = parseInt(document.getElementById('negative-power-num').value);
+                const userDenom = parseInt(document.getElementById('negative-power-denom').value);
+                const correctNum = negativePowerQuestions[currentNegativePowerQ].num;
+                const correctDenom = negativePowerQuestions[currentNegativePowerQ].denom;
+                const feedback = document.getElementById('negative-power-feedback');
+                
+                if (userNum === correctNum && userDenom === correctDenom) {
+                    feedback.textContent = 'Benar! 💥';
+                    feedback.className = 'mt-2 text-center text-green-400';
+                    negativePowerCorrect++;
+                    
+                    currentNegativePowerQ++;
+                    if (currentNegativePowerQ < negativePowerQuestions.length) {
+                        setTimeout(() => {
+                            document.getElementById('negative-power-question').textContent = negativePowerQuestions[currentNegativePowerQ].question;
+                            document.getElementById('negative-power-num').value = '';
+                            document.getElementById('negative-power-denom').value = '';
+                            feedback.className = 'mt-2 text-center hidden';
+                        }, 1000);
+                    } else {
+                        feedback.textContent = 'Semua soal selesai! 🎖️';
+                    }
+                } else {
+                    feedback.textContent = 'Coba lagi! 🎯';
+                    feedback.className = 'mt-2 text-center text-red-400';
+                }
+                
+                feedback.classList.remove('hidden');
+                updateMission2Progress();
+            });
+            
+            function updateMission2Progress() {
+                const totalExercises = zeroPowerQuestions.length + negativePowerQuestions.length;
+                const completedExercises = zeroPowerCorrect + negativePowerCorrect;
+                const progress = (completedExercises / totalExercises) * 100;
+                
+                document.getElementById('mission2-progress').style.width = `${progress}%`;
+                document.getElementById('mission2-tank').style.left = `${progress - 5}%`;
+                
+                if (completedExercises === totalExercises) {
+                    document.getElementById('mission2-success').style.display = 'block';
+                    totalXP += 35;
+                    mission2Complete = true;
+                }
+            }
+            
+            // Mission 3: Properties of Exponents
+            // Sifat 1: Perkalian Pangkat dengan Basis Sama
+            document.getElementById('check-prop1-1').addEventListener('click', function() {
+                const userExp = parseInt(document.getElementById('prop1-exp-1').value);
+                const userResult = parseInt(document.getElementById('prop1-result-1').value);
+                const correctExp = 7; // 2³ × 2⁴ = 2⁷
+                const correctResult = 128; // 2⁷ = 128
+                const feedback = document.getElementById('prop1-feedback-1');
+                
+                if (userExp === correctExp && userResult === correctResult) {
+                    feedback.textContent = 'Benar! 2³ × 2⁴ = 2³⁺⁴ = 2⁷ = 128';
+                    feedback.className = 'mt-2 text-center text-green-400';
+                } else {
+                    feedback.textContent = 'Coba lagi! Ingat: a^m × a^n = a^(m+n)';
+                    feedback.className = 'mt-2 text-center text-red-400';
+                }
+                
+                feedback.classList.remove('hidden');
+                updateMission3Progress();
+            });
+            
+            // Sifat 2: Pembagian Pangkat dengan Basis Sama
+            document.getElementById('check-prop2-1').addEventListener('click', function() {
+                const userExp = parseInt(document.getElementById('prop2-exp-1').value);
+                const userResult = parseInt(document.getElementById('prop2-result-1').value);
+                const correctExp = 4; // 3⁶ ÷ 3² = 3⁴
+                const correctResult = 81; // 3⁴ = 81
+                const feedback = document.getElementById('prop2-feedback-1');
+                
+                if (userExp === correctExp && userResult === correctResult) {
+                    feedback.textContent = 'Benar! 3⁶ ÷ 3² = 3⁶⁻² = 3⁴ = 81';
+                    feedback.className = 'mt-2 text-center text-green-400';
+                } else {
+                    feedback.textContent = 'Coba lagi! Ingat: a^m ÷ a^n = a^(m-n)';
+                    feedback.className = 'mt-2 text-center text-red-400';
+                }
+                
+                feedback.classList.remove('hidden');
+                updateMission3Progress();
+            });
+            
+            function updateMission3Progress() {
+                const prop1Done = document.getElementById('prop1-feedback-1').classList.contains('text-green-400');
+                const prop2Done = document.getElementById('prop2-feedback-1').classList.contains('text-green-400');
+                
+                const totalProperties = 2;
+                const completedProperties = [prop1Done, prop2Done].filter(Boolean).length;
+                const progress = (completedProperties / totalProperties) * 100;
+                
+                document.getElementById('mission3-progress').style.width = `${progress}%`;
+                document.getElementById('mission3-tank').style.left = `${progress - 5}%`;
+                
+                if (completedProperties === totalProperties) {
+                    document.getElementById('mission3-success').style.display = 'block';
+                    totalXP += 40;
+                    mission3Complete = true;
+                }
+            }
+            
+            // Final Quiz
+            const quizQuestions = [
+                {
+                    question: "Berapakah nilai dari 2⁴?",
+                    options: ["8", "12", "16", "32"],
+                    answer: 2
+                },
+                {
+                    question: "Berapakah nilai dari 5⁻²?",
+                    options: ["1/25", "1/10", "-10", "-25"],
+                    answer: 0
+                },
+                {
+                    question: "Bentuk sederhana dari 3² × 3³ adalah...",
+                    options: ["3⁵", "3⁶", "9⁵", "27"],
+                    answer: 0
+                },
+                {
+                    question: "Nilai dari (2⁻²)⁻³ adalah...",
+                    options: ["1/64", "1/8", "8", "64"],
+                    answer: 3
+                },
+                {
+                    question: "Hasil dari 4⁰ × 5² adalah...",
+                    options: ["0", "1", "25", "20"],
+                    answer: 2
+                }
+            ];
+            
+            let currentQuestion = 0;
+            let score = 0;
+            let userAnswers = new Array(quizQuestions.length).fill(-1);
+            
+            document.getElementById('start-quiz').addEventListener('click', function() {
+                document.getElementById('quiz-container').classList.add('active');
+                this.style.display = 'none';
+                loadQuestion(currentQuestion);
+            });
+            
+            function loadQuestion(index) {
+                const question = quizQuestions[index];
+                document.getElementById('current-question').textContent = index + 1;
+                document.getElementById('question-text').textContent = question.question;
+                
+                const optionsContainer = document.getElementById('options-container');
+                optionsContainer.innerHTML = '';
+                
+                question.options.forEach((option, i) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'flex items-center p-2 rounded hover:bg-gray-600 cursor-pointer';
+                    if (userAnswers[index] === i) {
+                        optionDiv.classList.add('bg-blue-700');
+                    }
+                    
+                    optionDiv.innerHTML = `
+                        <input type="radio" name="quiz-option" id="option-${i}" class="mr-2" ${userAnswers[index] === i ? 'checked' : ''}>
+                        <label for="option-${i}">${option}</label>
+                    `;
+                    
+                    optionDiv.addEventListener('click', function() {
+                        userAnswers[index] = i;
+                        document.querySelectorAll('#options-container > div').forEach(div => {
+                            div.classList.remove('bg-blue-700');
+                        });
+                        this.classList.add('bg-blue-700');
+                    });
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+                
+                // Update navigation buttons
+                document.getElementById('prev-question').disabled = index === 0;
+                document.getElementById('next-question').textContent = index === quizQuestions.length - 1 ? 'Selesai' : 'Selanjutnya';
+                
+                // Update progress bar
+                document.getElementById('quiz-progress-bar').style.width = `${((index + 1) / quizQuestions.length) * 100}%`;
+            }
+            
+            document.getElementById('prev-question').addEventListener('click', function() {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    loadQuestion(currentQuestion);
+                }
+            });
+            
+            document.getElementById('next-question').addEventListener('click', function() {
+                if (currentQuestion < quizQuestions.length - 1) {
+                    currentQuestion++;
+                    loadQuestion(currentQuestion);
+                } else {
+                    // Calculate score
+                    score = 0;
+                    userAnswers.forEach((answer, index) => {
+                        if (answer === quizQuestions[index].answer) {
+                            score += 20; // 5 questions, 20 points each
+                        }
+                    });
+                    
+                    // Show results
+                    document.getElementById('quiz-container').classList.remove('active');
+                    document.getElementById('quiz-results').classList.remove('hidden');
+                    document.getElementById('final-score').textContent = score;
+                    
+                    // Determine rank
+                    let rank = '';
+                    if (score >= 80) {
+                        rank = 'JENDERAL PANGKAT ⭐⭐⭐⭐⭐';
+                    } else if (score >= 60) {
+                        rank = 'KOLONEL PANGKAT ⭐⭐⭐⭐';
+                    } else if (score >= 40) {
+                        rank = 'MAYOR PANGKAT ⭐⭐⭐';
+                    } else if (score >= 20) {
+                        rank = 'KAPTEN PANGKAT ⭐⭐';
+                    } else {
+                        rank = 'LETNAN PANGKAT ⭐';
+                    }
+                    
+                    document.getElementById('rank').textContent = rank;
+                }
+            });
+            
+            document.getElementById('retry-quiz').addEventListener('click', function() {
+                userAnswers = new Array(quizQuestions.length).fill(-1);
+                currentQuestion = 0;
+                score = 0;
+                document.getElementById('score').textContent = '0';
+                document.getElementById('quiz-results').classList.add('hidden');
+                document.getElementById('start-quiz').style.display = 'block';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95fb106171c5ea8a',t:'MTc1MjYwMTQyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
+</body></html>
